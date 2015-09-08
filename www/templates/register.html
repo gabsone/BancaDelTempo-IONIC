@@ -1,0 +1,63 @@
+<ion-modal-view >
+    <ion-header-bar class="bar-energized">
+        <h1 class="title">Registrazione</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeRegister()">Chiudi</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <center>
+            <p >Registrati gratuitamente per inviare richieste alla banca del tempo</p>  
+            <p style="font-size : 1em;">Tutti i campi sono obbligatori</p>
+        </center>
+        <form name="register" novalidate="" ng-submit="doRegister(register)">
+            <div ng-show="regSubmitted" style=" color: red;text-align: center;">
+                <div ng-show="register.cognome.$invalid">Il cognome inserito non è valido</div>
+                <div ng-show="register.nome.$invalid">Il nome inserito non è valido</div>
+                <div ng-show="register.email.$invalid">L'email inserita non è valida</div>
+                
+                <div ng-show="register.pwd1.$invalid">La password inserita non è valida</div>
+                <div ng-show="register.pwd1.$notMatch">Le password non coincidono</div>
+                
+                <div ng-show="register.termini.$invalid">Bisogna accettare i termini d'utilizzo</div>
+                
+            </div>
+            
+            <div class="list">
+                <label class="item item-input" >
+
+                    <input placeholder="Cognome" name="cognome" type="text" ng-model="reg.cognome" required >
+                </label>
+
+                <label class="item item-input">
+
+                    <input placeholder="Nome" name="nome" type="text" ng-model="reg.nome" required>
+                </label>
+                <label class="item item-input">
+                    <input placeholder="Email" name="email" type="email" ng-model="reg.email" required>
+                </label>
+                <label class="item item-input">
+
+                    <input placeholder="Password" name="pwd1" type="password" ng-model="reg.password" required>
+                </label>
+                <label class="item item-input">
+
+                    <input placeholder="Ripeti Passord" name="pwd2" type="password" ng-model="reg.password2" required>
+                </label>
+                <li class="item item-checkbox">
+                    <label class="checkbox">
+                        <input name="termini" type="checkbox" ng-model="reg.termini" required>
+                    </label>
+                    Accetto i termini del servizio
+                </li>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">Registrati</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+
+   
+
+
+</ion-modal-view>

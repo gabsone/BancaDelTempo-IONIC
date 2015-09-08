@@ -1,0 +1,52 @@
+<ion-view view-title="Invia Richiesta" class="bg">
+    <ion-content class='padding'>
+        <center>
+            <p>In questa sezione è possibile inviare e consultare le richieste d'aiuto</p>
+        </center>
+        <br/>
+        <br/>
+        <div ng-show="$root.userInfo.api_key === undefined">
+            <hr/>
+            <center>
+                <h3>Per poter inviare una richiesta devi essere registrato</h3>
+            </center>
+        </div>
+        
+        <div ng-show="$root.userInfo.api_key !== undefined">
+            <center><h4>Invia nuova richiesta</h4></center>
+            <form name="richiesta" novalidate="" ng-submit="sendRichiesta(richiesta)">
+                <div ng-show="submitted" style=" color: red;text-align: center;">
+                    <div ng-show="richiesta.titolo.$invalid">Il titolo inserito non è valido</div>
+                    <div ng-show="richiesta.descizione.$invalid">La descrizione inserita non è valida</div>
+                </div>
+                <div class="list">
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Titolo</span>
+                        <input required ng-model="req.titolo" type="text" name="titolo" placeholder="Inserisci titolo" style="background: transparent;">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Descrizione</span>
+                        <textarea  required ng-model="req.descrizione" name="descizione" placeholder="Inserisci descizione" style="background: transparent;"></textarea>
+                    </label>
+                    <label class="item">
+                        <button class="button button-block button-positive" type="submit">Invia Richiesta</button>
+                    </label>
+
+                </div>
+            </form>
+            <br/>
+            <br/>
+            <center><h4>Richieste di aiuto inviate</h4></center>
+            <ion-list>
+                <ion-item ng-repeat="req in reqList" href="#/app/req/{{req.id}}" type="item-link" class="item item-icon-right" >
+                    <i class="icon ion-ios-arrow-right"></i>
+                    {{ req.titolo}}
+                </ion-item>
+                <ion-item ng-show="reqList.length == 0">
+                    <center> Nessuna richiesta inviata al momento</center>
+                </ion-item>
+                
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>

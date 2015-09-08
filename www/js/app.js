@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers', 'starter.factories', 'ngAnimate'])
+angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers', 'starter.factories', 'ngAnimate', 'ui.calendar'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -18,18 +18,23 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                     StatusBar.styleDefault();
                 }
             });
+
+
+        })
+        .constant("config", {
+                 "url": "http://www.associazionechiaraparadiso.it/api/v1"
+           // "url": "http://localhost/chiara/v1",
         })
 
-
-        .config(function ($stateProvider, $urlRouterProvider, $ionicAppProvider) {
-
-            $ionicAppProvider.identify({
-                // The App ID for the server
-                app_id: '9a5e36db',
-                // The API key all services will use for this app
-                api_key: '679c45d469a72bfa27f8d935e05154c7000854598df0afaf'
-            });
-           
+        .config(function ($stateProvider, $urlRouterProvider, $ionicAppProvider, $httpProvider,$ionicConfigProvider) {
+             $ionicConfigProvider.backButton.text('Indietro')
+            $httpProvider.defaults.useXDomain = true;
+            $httpProvider.defaults.headers.common = {};
+            $httpProvider.defaults.headers.post = {};
+            $httpProvider.defaults.headers.put = {};
+            $httpProvider.defaults.headers.patch = {};
+            delete $httpProvider.defaults.headers['X-Requested-With'];
+            //     $httpProvider.defaults.headers['Authorization'] = 'Basic Z2Fic29uZTE6Z2Fic29uZTQyMjc=';
             $stateProvider
 
                     .state('app', {
@@ -38,7 +43,42 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                         templateUrl: "templates/menu.html",
                         controller: 'AppCtrl'
                     })
-
+                    .state('app.richiesta', {
+                        url: "/richiesta",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/richiesta.html",
+                                controller: 'richiestaCtrl'
+                            }
+                        }
+                    })
+                    .state('app.richiestaDetail', {
+                        url: "/req/:reqId",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/richiestaDetail.html",
+                                controller: 'richiestaCtrl'
+                            }
+                        }
+                    })
+                    .state('app.calendario', {
+                        url: "/calendario",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/calendario.html",
+                                controller: 'calendarioCtrl'
+                            }
+                        }
+                    })
+                    .state('app.event', {
+                        url: "/event/:idevt",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/evento.html",
+                                controller: 'eventCtrl'
+                            }
+                        }
+                    })
                     .state('app.progetto', {
                         url: "/progetto",
                         views: {
@@ -107,4 +147,24 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/app/home');
         })
+        .factory('$localstorage', ['$window', function ($window) {
+
+                return {
+                    set: function (key, value) {
+                        $window.localStorage[key] = value;
+                    },
+                    get: function (key, defaultValue) {
+                        return $window.localStorage[key] || defaultValue;
+                    },
+                    setObject: function (key, value) {
+                        $window.localStorage[key] = JSON.stringify(value);
+                    },
+                    getObject: function (key) {
+                        return JSON.parse($window.localStorage[key] || '{}');
+                    },
+                    remove: function (key) {
+                        $window.localStorage.removeItem(key);
+                    }
+                };
+            }])
         ;

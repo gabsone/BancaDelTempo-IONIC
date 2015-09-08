@@ -1,0 +1,24 @@
+<ion-view view-title="Chi Siamo"  class="bg">
+    <ion-content>
+        <center><h1>Calendario Eventi</h1></center>
+        <div class="button-bar">
+            <a class="button" ng-click="changeView('month')">Mese</a>
+            <a class="button" ng-click="changeView('agendaWeek')">Settimana</a>
+            <a class="button" ng-click="changeView('agendaDay')">Giorno</a>
+
+            <a class="button" ng-click="goto(-1)"><i class="icon ion-arrow-left-b"></i></a>
+            <a class="button" ng-click="goto(+1)"><i class="icon ion-arrow-right-b"></i></a>
+
+             
+        </div>
+        <div style="padding:5px;">
+            <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar1" />
+        </div>
+      
+    </ion-content>
+    <style>
+        span.fc-time {
+            display:none;
+        }
+        </style>
+</ion-view>

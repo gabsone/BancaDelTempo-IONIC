@@ -1,11 +1,12 @@
-<ion-view view-title="Le Associazioni">
+<ion-view view-title="Le Associazioni" class="bg">
     <ion-content>
         <p  class="padding" style="text-align: justify;"> 
             Le associazioni vogliono dar vita ad una "speciale" banca delle ore che consenta a volontari, vecchi e nuovi, opportunamente formati, 
             di offrire il proprio tempo a chi soffre di malattie invalidanti (neurodegenerative e/o oncologiche). 
         </p>
         <ion-list>
-            <ion-item ng-repeat="ass in associazioni" href="#/app/ass/{{ass.id}}" type="item-link">
+            <ion-item ng-repeat="ass in associazioni" href="#/app/ass/{{ass.id}}" type="item-link" class="item item-icon-right"  >
+                <i class="icon ion-ios-arrow-right"></i>
                 {{ ass.nome}}
             </ion-item>
         </ion-list>

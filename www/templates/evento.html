@@ -1,0 +1,16 @@
+<ion-modal-view  class="bg">
+    <ion-header-bar>
+        <h1 class="title">Evento</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeEvent()">Chiudi</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <h1>{{selectedEvent.title}}</h1>
+        <span >{{selectedEvent.start._d | date:'dd/MM/yyyy'}}<span ng-show="!selectedEvent.allDay"> alle {{selectedEvent.start._d | date:'HH:mm'}}</span></span>
+        <p>{{selectedEvent.description}}</p>
+    </ion-content>
+    
+       
+   
+</ion-modal-view>

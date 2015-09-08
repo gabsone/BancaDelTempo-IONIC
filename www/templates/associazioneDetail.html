@@ -1,9 +1,10 @@
-<ion-view title="{{ ass.nome}}" >
+<ion-view title="{{ ass.nome}}" class="bg">
     <ion-nav-page title="nome">
         <ion-content has-header="true" has-footer="true" padding="true">
             <center>
                 <img src="{{ass.image}}" style="width: 90%" />
                 <h5 ng-bind-html="ass.address"></h5>
+                <p class="padding" style="text-align: justify;">{{ass.detail}}</p>
                 <button class="button button-light" ng-click="open()">
                     Vai al sito
                 </button>
