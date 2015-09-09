@@ -17,17 +17,24 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
+
+                if (analytics !== 'undefined') {
+                    analytics.startTrackerWithId("UA-52406140-2");
+                } else {
+                    console.log("Google Analytics Unavailable");
+                }
+
             });
 
 
         })
         .constant("config", {
-                 "url": "http://www.associazionechiaraparadiso.it/api/v1"
-           // "url": "http://localhost/chiara/v1",
+            "url": "http://www.associazionechiaraparadiso.it/api/v1"
+                    // "url": "http://localhost/chiara/v1",
         })
 
-        .config(function ($stateProvider, $urlRouterProvider, $ionicAppProvider, $httpProvider,$ionicConfigProvider) {
-             $ionicConfigProvider.backButton.text('Indietro')
+        .config(function ($stateProvider, $urlRouterProvider, $ionicAppProvider, $httpProvider, $ionicConfigProvider) {
+            $ionicConfigProvider.backButton.text('Indietro')
             $httpProvider.defaults.useXDomain = true;
             $httpProvider.defaults.headers.common = {};
             $httpProvider.defaults.headers.post = {};
@@ -124,14 +131,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                             }
                         }
                     })
-                    .state('app.contatti', {
-                        url: "/contatti",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "templates/contatti.html"
-                            }
-                        }
-                    })
+                   
 
 
 

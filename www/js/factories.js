@@ -11,7 +11,7 @@ angular.module('starter.factories', [])
                             'Tel.333 9057690',
                     image: 'img/ass/ass1.png',
                     url: 'http://www.associazionechiaraparadiso.it' ,
-                    detail :""
+                    detail :"L'Associazione di Volontariato Chiara Paradiso  è accanto al bambino oncologico ospedalizzato e nella fase terminale. Nata a Bellizzi (Sa) nel 2009 in ricordo della piccola Chiara è costituita principalmente da familiari e amici di bambini che hanno combattuto il cancro. L'Associazione è attiva in Hospice, nei DayHospital, in Casa di Accoglienza ed in diversi ospedali, con laboratori di clownterapia, magicoleria, arteterapia. Il suo obiettivo principale è donare sorrisi ai piccoli ammalati. Inoltre l’associazione si occupa di: acccoglienza del Caregiver; attività di informazione, formazione e aggregazione; promozione dell'importanza del Volontariato; consulenza psicologica e spirituale; costituzione di gruppi di mutuo aiuto per genitori che hanno perso i figli; centro di ascolto."
                 }, {
                     id: '2',
                     nome: "Noi Per Te",

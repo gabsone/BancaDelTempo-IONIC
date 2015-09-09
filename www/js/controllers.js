@@ -77,6 +77,7 @@ angular.module('starter.controllers', [])
 
                                 });
                             } else {
+                               
                                 var alertPopup = $ionicPopup.alert({
                                     title: 'Info',
                                     template: 'Registrazione effettuata con successo, adesso si può accedere'
@@ -128,6 +129,7 @@ angular.module('starter.controllers', [])
                                     } else {
                                         $localstorage.setObject('user', resp.data);
                                         $rootScope.userInfo = resp.data;
+                                        
 
                                         console.log(resp.data);
                                         var alertPopup = $ionicPopup.alert({
@@ -171,6 +173,8 @@ angular.module('starter.controllers', [])
                 });
                 confirmPopup.then(function (res) {
                     if (res) {
+                        
+
                         $localstorage.setObject('user', {});
                         $rootScope.userInfo = {};
                         $scope.profile.hide();
@@ -185,7 +189,7 @@ angular.module('starter.controllers', [])
         })
 
         .controller('richiestaCtrl', function ($scope, $filter, $stateParams, config, $rootScope, $localstorage, $http, $ionicLoading, $ionicPopup) {
-
+            
             $scope.reqList = [];
             $scope.req = {};
             $scope.selected = {};
@@ -196,6 +200,8 @@ angular.module('starter.controllers', [])
                             $scope.selected = value;
                         }
                     });
+                   
+
                 }
             });
             $scope.loadRequests = function () {
@@ -229,6 +235,8 @@ angular.module('starter.controllers', [])
                     });
                     $scope.req["user_id"] = $rootScope.userInfo.id;
                     $http.post(config.url + '/request', $scope.req).then(function (resp) {
+                       
+
                         $ionicLoading.hide();
                         if (resp.data.result === false) {
                             var alertPopup = $ionicPopup.alert({
@@ -277,7 +285,7 @@ angular.module('starter.controllers', [])
         })
 
         .controller('associazioniCtrl', function ($scope, AssociazioniService) {
-
+            
             $scope.associazioni = [];
             $scope.associazioni = AssociazioniService.allSync();
 
@@ -288,23 +296,23 @@ angular.module('starter.controllers', [])
         .controller('associazioniDetailCtrl', function ($scope, $stateParams, AssociazioniService) {
 
             $scope.ass = AssociazioniService.get($stateParams.assId);
-
+          
             $scope.open = function () {
                 window.open($scope.ass.url, "_system");
             };
 
         })
 
-        .controller('calendarioCtrl', function ($scope, $compile, $stateParams, $location, $ionicModal, uiCalendarConfig) {
-
+        .controller('calendarioCtrl', function ($scope, $compile, $ionicLoading, $stateParams, $location, $ionicModal, uiCalendarConfig) {
+           
             $scope.selectedEvent = {};
             $scope.eventSource = {
                 url: "https://www.google.com/calendar/feeds/03ckb219gfdjn29g8b1o2qu694%40group.calendar.google.com/public/basic"
 
             };
-             $scope.$on('$ionicView.enter', function (e) {
-                 console.log("refresh");
-                 uiCalendarConfig.calendars["myCalendar1"].fullCalendar('refresh');
+            $scope.$on('$ionicView.enter', function (e) {
+                console.log("refresh");
+                uiCalendarConfig.calendars["myCalendar1"].fullCalendar('refresh');
             });
             $scope.changeView = function (view) {
                 uiCalendarConfig.calendars["myCalendar1"].fullCalendar('changeView', view);
@@ -317,6 +325,7 @@ angular.module('starter.controllers', [])
                 }
 
             };
+//             
             $scope.eventSources = [$scope.eventSource];
             /* config object */
             $scope.uiConfig = {
@@ -330,7 +339,16 @@ angular.module('starter.controllers', [])
                         center: 'title',
                         right: ''
                     },
-                   
+                    loading: function (before) {
+                        
+                        if(before){
+                            $ionicLoading.show({
+                                template: 'Caricamento in corso...'
+                            });
+                        }else{
+                            $ionicLoading.hide();
+                        }
+                    },
                     eventAfterRender: function (event, element, view) {
 //                        console.log("eccolo1");
 //                        console.log($(element).html());
@@ -341,6 +359,7 @@ angular.module('starter.controllers', [])
                     eventClick: function (calEvent, jsEvent, view) {
 
                        
+
                         $scope.selectedEvent = calEvent;
                         $scope.modal.show();
                         return false;
