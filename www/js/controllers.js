@@ -281,6 +281,9 @@ angular.module('starter.controllers', [])
         })
 
         .controller('HomeCtrl', function ($scope, $ionicUser) {
+            
+            
+            
 
         })
 
@@ -332,8 +335,9 @@ angular.module('starter.controllers', [])
                 calendar: {
                     googleCalendarApiKey: 'AIzaSyBvVvk311QRswGI0Fji0Yce4hWZXFK8phw',
                     editable: false,
-                    height: 450,
+                   // height: 1200,
                     lang: 'it',
+                    timezone : "Europe\/Rome",
                     header: {
                         left: '',
                         center: 'title',
@@ -358,7 +362,7 @@ angular.module('starter.controllers', [])
                     },
                     eventClick: function (calEvent, jsEvent, view) {
 
-                       
+                        console.log(calEvent);
 
                         $scope.selectedEvent = calEvent;
                         $scope.modal.show();

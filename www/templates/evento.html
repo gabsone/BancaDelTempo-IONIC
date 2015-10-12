@@ -6,8 +6,16 @@
         </div>
     </ion-header-bar>
     <ion-content class="padding">
+        
         <h1>{{selectedEvent.title}}</h1>
-        <span >{{selectedEvent.start._d | date:'dd/MM/yyyy'}}<span ng-show="!selectedEvent.allDay"> alle {{selectedEvent.start._d | date:'HH:mm'}}</span></span>
+        <h4>{{selectedEvent.location}}</h4>
+        <hr/>
+        <span >{{selectedEvent.start._i |  date:'dd/MM/yyyy'}}
+            <span ng-show="!selectedEvent.allDay"> dalle {{selectedEvent.start._i | date:'HH:mm'}}</span>
+            <span ng-show="!selectedEvent.allDay"> alle {{selectedEvent.end._i | date:'HH:mm'}}</span>
+            
+        </span>
+        <hr/>
         <p>{{selectedEvent.description}}</p>
     </ion-content>
     

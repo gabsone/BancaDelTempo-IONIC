@@ -6,6 +6,8 @@
     "ionic-service-core": "~0.1.7"
   },
   "dependencies": {
-    "angular-ui-calendar": "~1.0.1"
+    "angular-moment": "~0.10.3",
+    "angular-ui-calendar": "~1.0.1",
+    "moment-timezone": "~0.4.1"
   }
 }
