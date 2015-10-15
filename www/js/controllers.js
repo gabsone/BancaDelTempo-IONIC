@@ -335,7 +335,7 @@ angular.module('starter.controllers', [])
                 calendar: {
                     googleCalendarApiKey: 'AIzaSyBvVvk311QRswGI0Fji0Yce4hWZXFK8phw',
                     editable: false,
-                   // height: 1200,
+                    height: 1000,
                     lang: 'it',
                     timezone : "Europe\/Rome",
                     header: {
