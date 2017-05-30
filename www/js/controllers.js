@@ -315,7 +315,7 @@ angular.module('starter.controllers', [])
             };
             $scope.$on('$ionicView.enter', function (e) {
                 console.log("refresh");
-                uiCalendarConfig.calendars["myCalendar1"].fullCalendar('refresh');
+                uiCalendarConfig.calendars["myCalendar1"].fullCalendar('render');
             });
             $scope.changeView = function (view) {
                 uiCalendarConfig.calendars["myCalendar1"].fullCalendar('changeView', view);
